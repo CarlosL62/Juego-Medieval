@@ -1,0 +1,120 @@
+@startuml Diagrama
+
+object Menu {
+    
+}
+
+object PrimeraPartida {
+    Se le solicitan los datos al jugador
+    Se le acreditan 500 de oro
+    Se abre la tienda para comprar objetos
+    Se abre la selección de personajes
+    Se abre la selección de mapas
+    Empezar partida
+}
+
+Object Partida {
+    Se abre la tienda para comprar objetos
+    Se abre la selección de personajes
+    Se abre la selección de mapas
+    Empezar partida
+}
+
+Object Gana {
+    +200 oro
+}
+
+Object Jugabilidad {
+    El movimiento de todos los personajes será en línea
+}
+
+Object Jugables {
+    Caballero
+    Arquero
+    Mago
+    Gigante
+    Dragon
+}
+
+Object Enemigos {
+    Ogro
+    Gargola
+    Bruja
+    Cancerbero
+    Flor carnivora
+}
+
+Object Casillas {
+    Planicie
+    Arbol
+    Agua
+    Lava
+}
+
+Object Personajes {
+    Jugables
+}
+
+Object Objetos {
+    Semilla de la vida
+    Elixir
+    Capa de movilidad
+}
+
+Object Mejoras {
+    Vida
+    Daño
+    Movilidad
+}
+
+Object 8x8 {
+    Tamaño predefinido
+    Porcentajes de tipos de casillas predefinidos
+}
+Object Personalizado {
+    Nivel de dificultad
+    Tamaño del tablero
+    Porcentage de tipos de casillas
+}
+
+Object Inventario {
+    Visualización e información de
+    personajes
+    objetos
+    Venta de objetos que ya no quiera
+}
+
+Object Moneda {
+    Oro
+}
+
+Menu -up-* GamePlay 
+
+IniciarPartida -up-* Menu
+Tienda -up-* Menu
+GeneracionTablero -up-* Menu
+Inventario -up-* Menu
+
+PrimeraPartida -up-* IniciarPartida
+Partida -up-* IniciarPartida
+
+Jugabilidad .up. IniciarPartida
+Jugables .up. Jugabilidad
+Enemigos .up. Jugabilidad
+Gana .up. Jugabilidad
+Gana .left. Moneda
+
+Personajes -up-* Tienda
+Objetos -up-* Tienda
+Mejoras -up-* Tienda
+Mejoras .. Jugables
+Personajes --> Jugables
+
+GeneracionTablero -up-* Personalizado
+GeneracionTablero -up-* 8x8
+Casillas -up-* GeneracionTablero
+
+Tienda .. Moneda
+Inventario .. Moneda
+
+@enduml
