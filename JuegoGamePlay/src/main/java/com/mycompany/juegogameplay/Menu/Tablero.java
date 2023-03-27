@@ -29,6 +29,10 @@ public class Tablero {
 
     //Valores para el tablero
     private int alto;
+    public int getAlto() {
+        return alto;
+    }
+
     private int[] porcentajes;
 
     private String[][] tableroBatalla;
@@ -119,7 +123,6 @@ public class Tablero {
             // Obtenemos cúantas casillas se deben crear, además se divide dentro de 100 el
             // porcentaje, para obtener un decimal
             cantidadCasillas = (int) Math.floor(alto * alto * (this.porcentajes[i] / 100.0));
-            System.out.println("--"+cantidadCasillas);
             // Se hace un ciclo para la creación de los tipos de casilla, el cual se repite
             // si en dado caso no se llega a la cantidad deseada
             caracter = switch (i) {
@@ -136,7 +139,7 @@ public class Tablero {
                 for (int fila = 1; fila < tableroBatalla.length; fila++) {
                     for (int columna = 1; columna < tableroBatalla.length; columna++) {
                         // Si es 1, modifica, si es 0, no
-                        int modificar = Consola.numeroAleatorio(1, 0);
+                        int modificar = Consola.numeroAleatorio(5, 0);
                         //Si el espacio está vacío, se modificará
                         if (tableroBatalla[fila][columna] == "|   |") {
                             //Dejamos la planicie al final, ya que con los otros caracteres cumplidos, este solo tiene la función de llenado
@@ -147,7 +150,7 @@ public class Tablero {
                                 // Si ya se tiene la cantidad necesaria de casillas se rompe el ciclo
                                 terminado = true;
                                 break;
-                            } else if (modificar == 1) {
+                            } else if (modificar == 0) {
                                 if(caracter != aguaImpreso){
                                     tableroBatalla[fila][columna] = "| " + caracter + " |";
                                     contCasillas = contCasillas + 1;
@@ -167,15 +170,7 @@ public class Tablero {
     }
 
     public void edicionTablero(int x, int y, String caracter){
-        boolean movimientoCorrecto = false;
-        do {
-            if (x > 0 && y > 0 && x <= tableroBatalla.length && y <= tableroBatalla.length) {
-                tableroBatalla[x][y] = "| "+caracter+" |";
-                movimientoCorrecto = true;
-            } else{
-                System.out.println("Casilla fuera del campo, intenta de nuevo");
-            }
-        } while (!movimientoCorrecto);
+        tableroBatalla[x][y] = "| "+caracter+" |";
     }
 
     public void imprimirTablero() {
@@ -189,3 +184,4 @@ public class Tablero {
         Consola.EnterContinuar();
     }
 }
+

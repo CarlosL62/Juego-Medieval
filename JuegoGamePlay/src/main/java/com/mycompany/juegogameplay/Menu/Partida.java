@@ -34,7 +34,11 @@ public class Partida{
             Consola.LimpiarPantalla();
             System.out.println("Una nueva aventura nos espera, " + jugador.getUser());
             Consola.EnterContinuar();
-            jugador.setOro(500);
+            if (jugador.getUser().equals("RicoMcPato")) {
+                jugador.setOro(999999);
+            } else{
+                jugador.setOro(500);
+            }
             Consola.LimpiarPantalla();
             System.out.println("Se te acreditaron " + jugador.getOro() + " de oro");
             // primeraPartida = false;

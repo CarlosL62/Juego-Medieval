@@ -1,10 +1,21 @@
 package com.mycompany.juegogameplay.Personajes;
 
-public class Cancerbero {
+import com.mycompany.juegogameplay.Menu.Consola;
+
+public class Cancerbero extends Enemigos{
     
-    public static String caracter = "E";
-    public static int vida = 400;
-    public static int daño = 45;
-    public static String tipoMovimiento = "Tierra, un cuadro por turno";
-    public static String tipoAtaque = "incendia todo a su alrededor, en un rango de un cuadro";
+    private int vida = 400;
+    private int daño = 45;
+
+    public Cancerbero() {
+        super.caracter = "E";
+        super.caracterImpreso = (red+caracter+reset);
+        super.movimientoMax = 1;
+        super.personaje = "Cancerbero";
+        super.vida = vida;
+        super.daño = daño;
+        super.tipoMovimiento = "Tierra, un cuadro por turno";
+        super.tipoAtaque = "Incendia todo a su alrededor, en un rango de un cuadro";
+    }
+
 }

@@ -20,12 +20,19 @@ public class Consola {
         int response = 0;
         boolean error = false;
         do{
-            try {
-                response = Integer.parseInt(readString(message));
-                error = false;
-            } catch (Exception e) {
-                System.out.println("Valor ingresado no válido, intente de nuevo");
-                error = true;
+            error = false;
+
+            String texto = readString(message);
+            for (int i = 0; i < texto.length(); i++) {
+                char caracter = texto.charAt(i);
+                if (!Character.isDigit(caracter)) {
+                    error = true;
+                }
+            }
+            if(error){
+                Consola.Invalido();
+            } else{
+                response = Integer.parseInt(texto);
             }
         } while (error);
         return response;

@@ -1,0 +1,172 @@
+Leer mi problema, 
+Leer mi problema
+Leer mi problema 
+
+Jueguen en una hoja de papel 
+Expliquen a alguien como funciona el juego
+Jueguenlo con esa persona
+
+
+
+
+
+
+Hagan su interfaz gráfica (importantisimo)
+
+// inicie mi juego 
+
+Menu principal
+
+1) Administrar jugadores
+2) Jugar 
+3) Estadisticas 
+4) Salir
+
+Seleccióne su opcion? 
+
+// si selecciona 1) 
+
+    Menu de jugadores
+
+    1) Listar jugadores
+    2) crear jugador
+    3) salir
+
+        // si selecciona  1) 
+        
+        Lista de jugadores
+
+        No tienen jugadores creados
+
+        Presione enter para continuar . . . 
+    
+    // mostro menu de jugadores
+    Menu de jugadores
+
+    1) Listar jugadores
+    2) crear jugador
+    3) salir
+
+        // selecionar 2 
+
+        Crando jugaro 
+
+        Seleccione el tipo:
+        1) humano
+        2) computadora
+
+        // seleciono 1
+
+        Ingrese su nombre:
+
+        // ingrese oliver
+        
+        Jugador Oliver creado 
+        presione enter para continuar
+
+    // mostro menu de jugadores
+    Menu de jugadores
+
+    1) Listar jugadores
+    2) crear jugador
+    3) salir
+
+        // selecionar opcion 1 
+
+        Listado de Jugadores 
+
+        1) Oliver - Tipo: Humano 
+
+        presione enter para continuar . . . .
+
+        //presiono enter
+
+
+    // mostro menu de jugadores
+    Menu de jugadores
+
+    1) Listar jugadores
+    2) crear jugador
+    3) salir
+
+    // crear más jugadores
+    // selecionar a
+
+    Opción invalida, intente de nuevo 
+
+    // mostro menu de jugadores
+    Menu de jugadores
+
+    1) Listar jugadores
+    2) crear jugador
+    3) salir
+
+    // seleccione 3 
+
+// inicie mi juego 
+
+Menu principal
+
+1) Administrar jugadores
+2) Jugar 
+3) Estadisticas 
+4) Salir
+
+    //selecione 2 
+    //si no tengo dos jugadores minimo
+    //debo crear dos jugadores
+
+    Seleccione el primer jugador, jugara con las X
+
+    1) Oliver - Tipo humano 
+    2) Maria - Tipo computadora
+
+    Seleccione el primer jugador 
+
+    // seleccion el numero 2 
+
+    Seleccione el segundo jugador, jugara con las O
+
+    1) Oliver - Tipo humano 
+
+    // seleccion numero 3
+
+    Opcion invalida, 
+
+    Seleccione el segundo jugador, jugara con las O
+
+    1) Oliver - Tipo humano 
+
+
+    // . .. . . 
+    Inicio el juego 
+
+    y/x   0   1   2
+    0       |    |   
+         ____________
+    1       |    |   
+         ____________
+    2       |    |   
+
+    Jugador Maria (0)
+    Voy a jugar en la posición x=1,y=1
+    
+
+    //coordenada valida
+
+    y/x   0   1   2
+    0       |    |   
+         ____________
+    1       |  O |   
+         ____________
+    2       |    |   
+
+    Jugador Oliver (X)
+    Coordenada en x: 
+    //ingresa 0
+    Coordenda en Y: 
+    //ingresa 0
+
+
+
+

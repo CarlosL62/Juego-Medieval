@@ -1,0 +1,21 @@
+crear variable para controlar menu - opcionMenu
+Mostrar titulo "Bienvenido al menu principal"
+mostrar texto "1) Administrar jugadores"
+mostrar texto "2) Iniciar una partida"
+mostrar texto "3) estadisticas"
+mostrar texto "4) salir del juego"
+mostrar texto "Ingrese su opcion"
+ingresar texto variable - opcionMenu      // manejarlo inteligente (el revise errores)
+si la opcion es invalida 
+    regresar a paso 1
+si la opcion es número 1 
+    ejecutar menu administar jugadores
+    regresar a paso 1
+si la opción es número 2
+    ejectuar iniciar partida
+    regresar a paso 1
+si la opción es número 3 
+    ejecutar estadistica
+    regresar paso1
+si la opción es número 4 
+    salir del programa
