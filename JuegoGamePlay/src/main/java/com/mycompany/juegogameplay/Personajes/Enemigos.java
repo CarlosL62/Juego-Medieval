@@ -24,109 +24,21 @@ public class Enemigos extends Personajes{
             switch (movimientoTeclado) {
                 case "A":
                     do {
-                        /*if (movimientoPersonajeValido(tablero, xfila, ycolumna - 1)) {
-                            tablero[xfila][ycolumna] = casillaOriginal;
-                            ycolumna = ycolumna - 1;
-                            casillaOriginal = tablero[xfila][ycolumna];
-                            tablero[xfila][ycolumna] = "| " + caracterImpreso + " |";
-                            if (moverContador < movimientoMax) {
-                                int opcion = Consola.numeroAleatorio(2, 1);
-                                if (opcion == 1) {
-                                    moverContador = moverContador + 1;
-                                } else if (opcion == 2) {
-                                    movimientoTerminado = true;
-                                }
-                            } else {
-                                movimientoTerminado = true;
-                            }
-                        } else {
-                            movimientoValido = false;
-                        }*/
-
                         movimientoPersonajeValido(tablero, xfila, ycolumna - 1);
                     } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
                     break;
                 case "W":
                     do {
-                        /*if (movimientoPersonajeValido(tablero, xfila - 1, ycolumna)) {
-                            tablero[xfila][ycolumna] = casillaOriginal;
-                            xfila = xfila - 1;
-                            casillaOriginal = tablero[xfila][ycolumna];
-                            tablero[xfila][ycolumna] = "| " + caracterImpreso + " |";
-                            int opcion = 0;
-                            do {
-                                if (moverContador < movimientoMax) {
-                                    opcion = Consola.numeroAleatorio(2, 1);
-                                    if (opcion == 1) {
-                                        moverContador = moverContador + 1;
-                                    } else if (opcion == 2) {
-                                        movimientoTerminado = true;
-                                    }
-                                } else {
-                                    movimientoTerminado = true;
-                                }
-
-                            } while (opcion != 1 && opcion != 2 && !movimientoTerminado);
-                        } else {
-                            movimientoValido = false;
-                        }*/
-
                         movimientoPersonajeValido(tablero, xfila - 1, ycolumna);
                     } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
                     break;
                 case "S":
                     do {
-                        /*if (movimientoPersonajeValido(tablero, xfila + 1, ycolumna)) {
-                            tablero[xfila][ycolumna] = casillaOriginal;
-                            xfila = xfila + 1;
-                            casillaOriginal = tablero[xfila][ycolumna];
-                            tablero[xfila][ycolumna] = "| " + caracterImpreso + " |";
-                            int opcion = 0;
-                            do {
-                                if (moverContador < movimientoMax) {
-                                    opcion = Consola.numeroAleatorio(2, 1);
-                                    if (opcion == 1) {
-                                        moverContador = moverContador + 1;
-                                    } else if (opcion == 2) {
-                                        movimientoTerminado = true;
-                                    }
-                                } else {
-                                    movimientoTerminado = true;
-                                }
-
-                            } while (opcion != 1 && opcion != 2 && !movimientoTerminado);
-                        } else {
-                            movimientoValido = false;
-                        }*/
-
                         movimientoPersonajeValido(tablero, xfila + 1, ycolumna);
                     } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
                     break;
                 case "D":
                     do {
-                        /*if (movimientoPersonajeValido(tablero, xfila, ycolumna + 1)) {
-                            tablero[xfila][ycolumna] = casillaOriginal;
-                            ycolumna = ycolumna + 1;
-                            casillaOriginal = tablero[xfila][ycolumna];
-                            tablero[xfila][ycolumna] = "| " + caracterImpreso + " |";
-                            int opcion = 0;
-                            do {
-                                if (moverContador < movimientoMax) {
-                                    opcion = Consola.numeroAleatorio(2, 1);
-                                    if (opcion == 1) {
-                                        moverContador = moverContador + 1;
-                                    } else if (opcion == 2) {
-                                        movimientoTerminado = true;
-                                    }
-                                } else {
-                                    movimientoTerminado = true;
-                                }
-
-                            } while (opcion != 1 && opcion != 2 && !movimientoTerminado);
-                        } else {
-                            movimientoValido = false;
-                        }*/
-
                         movimientoPersonajeValido(tablero, xfila, ycolumna + 1);
                     } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
                     break;
