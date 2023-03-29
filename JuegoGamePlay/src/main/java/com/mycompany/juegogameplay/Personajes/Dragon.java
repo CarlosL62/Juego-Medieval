@@ -3,7 +3,7 @@ package com.mycompany.juegogameplay.Personajes;
 import com.mycompany.juegogameplay.Menu.Consola;
 
 public class Dragon extends Jugables {
-    
+
     private boolean disponible = false;
     private int vida = 150;
     private int daño = 100;
@@ -11,7 +11,7 @@ public class Dragon extends Jugables {
 
     public Dragon() {
         super.caracter = "D";
-        super.caracterImpreso = (purple+caracter+reset);
+        super.caracterImpreso = (purple + caracter + reset);
         super.disponible = disponible;
         super.movimientoMax = movimientoMax;
         super.personaje = "Dragon";
@@ -21,16 +21,16 @@ public class Dragon extends Jugables {
         super.tipoAtaque = "En línea y en un rango de dos cuadros a todo lo que esté en dicho rango";
     }
 
-    //Modificación para que tome en cuenta que vuela
+    // Modificación para que tome en cuenta que vuela
     @Override
     public void movimientoPersonajeValido(String[][] tablero, int destinoX, int destinoY) {
         // Verificación que el movimiento sea válido, primero que este dentro del
         // tablero y que sea a una casilla válida
-        if((destinoX > 0 && destinoY > 0 && destinoX < tablero.length && destinoY < tablero.length) && 
-        (tablero[destinoX][destinoY].equals("| "+reset+"_"+reset+" |") || 
-        tablero[destinoX][destinoY].equals("| "+yellow+"$"+reset+" |") ||
-        tablero[destinoX][destinoY].equals("| " + green + "T" + reset + " |") || 
-        tablero[destinoX][destinoY].equals("| " + blue + "~" + reset + " |"))){
+        if ((destinoX > 0 && destinoY > 0 && destinoX < tablero.length && destinoY < tablero.length) &&
+                (tablero[destinoX][destinoY].equals("| " + reset + "_" + reset + " |") ||
+                        tablero[destinoX][destinoY].equals("| " + yellow + "$" + reset + " |") ||
+                        tablero[destinoX][destinoY].equals("| " + green + "T" + reset + " |") ||
+                        tablero[destinoX][destinoY].equals("| " + blue + "~" + reset + " |"))) {
 
             // Realizamos el cambio de las casillas originales y movemos al personaje
             tablero[xfila][ycolumna] = casillaOriginal;
@@ -60,20 +60,115 @@ public class Dragon extends Jugables {
         }
     }
 
-    
-    /*@Override
-    public boolean movimientoPersonajeValido(String[][] tablero, int destinoX, int destinoY){
-        boolean dentroArea = false;
-        //Verificación que el movimiento sea válido, primero que este dentro del tablero y que sea a una casilla válida
-        if((destinoX > 0 && destinoY > 0 && destinoX < tablero.length && destinoY < tablero.length) && 
-        (tablero[destinoX][destinoY].equals("| "+reset+"_"+reset+" |") || 
-        tablero[destinoX][destinoY].equals("| "+yellow+"$"+reset+" |") ||
-        tablero[destinoX][destinoY].equals("| " + green + "T" + reset + " |") || 
-        tablero[destinoX][destinoY].equals("| " + blue + "~" + reset + " |"))){
-            
-            dentroArea = true;
-        }
+    // Modificación para el tipo de ataque
+    @Override
+    public Enemigos[] ataquePersonaje(String[][] tablero, Enemigos[] enemigos) {
+        boolean coordenadaCorrecta = true;
 
-        return dentroArea;
-    }*/
+        do {
+            coordenadaCorrecta = true;
+
+            // Solicitud de coordenadas de ataque
+            System.out.println("Ingrese la dirección que desea atacar usando AWSD");
+            String opcion = Consola.readString("Dirección para atacar");
+            opcion = opcion.toUpperCase();
+            switch (opcion) {
+                case "A":
+                    for (int pcolumna = ycolumna; pcolumna >= (ycolumna - 2); pcolumna--) {
+                        if (tablero[xfila][pcolumna].equals("| " + green + "T" + reset + " |")) {
+                            tablero[xfila][pcolumna] = ("| " + reset + "_" + reset + " |");
+                        } else {
+                            // Verificación de coordenada válida
+                            if (ataqueValido(tablero, xfila, pcolumna)) {
+                                // Entonces realiza el ataque
+                                int obj = 0;
+                                for (int i = 0; i < enemigos.length; i++) {
+                                    if (enemigos[i].getXfila() == xfila && enemigos[i].getYcolumna() == pcolumna) {
+                                        obj = i;
+                                    }
+                                }
+                                enemigos[obj].setVida(enemigos[obj].getVida() - daño);
+                            } else {
+                                // Coordenada incorrecta y continua
+                            }
+                        }
+
+                    }
+                    break;
+                case "W":
+                    for (int pfila = xfila; pfila >= (xfila - 2); pfila--) {
+                        if (tablero[pfila][ycolumna].equals("| " + green + "T" + reset + " |")) {
+                            tablero[pfila][ycolumna] = ("| " + reset + "_" + reset + " |");
+                        } else {
+                            // Verificación de coordenada válida
+                            if (ataqueValido(tablero, pfila, ycolumna)) {
+                                // Entonces realiza el ataque
+                                int obj = 0;
+                                for (int i = 0; i < enemigos.length; i++) {
+                                    if (enemigos[i].getXfila() == pfila && enemigos[i].getYcolumna() == ycolumna) {
+                                        obj = i;
+                                    }
+                                }
+                                enemigos[obj].setVida(enemigos[obj].getVida() - daño);
+                            } else {
+                                // Coordenada incorrecta y continua
+                            }
+                        }
+
+                    }
+                    break;
+                case "S":
+                    for (int pfila = xfila; pfila <= (xfila + 2); pfila++) {
+                        if (tablero[pfila][ycolumna].equals("| " + green + "T" + reset + " |")) {
+                            tablero[pfila][ycolumna] = ("| " + reset + "_" + reset + " |");
+                        } else {
+                            // Verificación de coordenada válida
+                            if (ataqueValido(tablero, pfila, ycolumna)) {
+                                // Entonces realiza el ataque
+                                int obj = 0;
+                                for (int i = 0; i < enemigos.length; i++) {
+                                    if (enemigos[i].getXfila() == pfila && enemigos[i].getYcolumna() == ycolumna) {
+                                        obj = i;
+                                    }
+                                }
+                                enemigos[obj].setVida(enemigos[obj].getVida() - daño);
+                            } else {
+                                // Coordenada incorrecta y continua
+                            }
+                        }
+
+                    }
+                    break;
+                case "D":
+                    for (int pcolumna = ycolumna; pcolumna <= (ycolumna + 2); pcolumna++) {
+                        if (tablero[xfila][pcolumna].equals("| " + green + "T" + reset + " |")) {
+                            tablero[xfila][pcolumna] = ("| " + reset + "_" + reset + " |");
+                        } else {
+                            // Verificación de coordenada válida
+                            if (ataqueValido(tablero, xfila, pcolumna)) {
+                                // Entonces realiza el ataque
+                                int obj = 0;
+                                for (int i = 0; i < enemigos.length; i++) {
+                                    if (enemigos[i].getXfila() == xfila && enemigos[i].getYcolumna() == pcolumna) {
+                                        obj = i;
+                                    }
+                                }
+                                enemigos[obj].setVida(enemigos[obj].getVida() - daño);
+                            } else {
+                                // Coordenada incorrecta y continua
+                                if (pcolumna == 1) {
+                                    System.out.println("Ataque fallido");
+                                }
+                            }
+                        }
+
+                    }
+                    break;
+                default:
+                    coordenadaCorrecta = false;
+                    break;
+            }
+        } while (!coordenadaCorrecta);
+        return enemigos;
+    }
 }

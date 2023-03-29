@@ -1,7 +1,6 @@
 package com.mycompany.juegogameplay.Personajes;
 
 import com.mycompany.juegogameplay.Menu.Consola;
-import com.mycompany.juegogameplay.Menu.Tablero;
 
 public class Personajes{
 
@@ -21,6 +20,14 @@ public class Personajes{
     }
 
     protected int movimientoMax = 1;
+
+    public int getMovimientoMax() {
+        return movimientoMax;
+    }
+
+    public void setMovimientoMax(int movimientoMax) {
+        this.movimientoMax = movimientoMax;
+    }
 
     protected String tipoMovimiento;
     protected String tipoAtaque;

@@ -45,4 +45,98 @@ public class Bruja extends Enemigos{
         }    
     }
 
+    // Modificación para el tipo de ataque
+    @Override
+    public Jugables[] ataquePersonaje(String[][] tablero, Jugables[] personajesJugar) {
+
+            // Direccion de ataque aleatoria
+            int opcion = Consola.numeroAleatorio(4, 1);
+            String direccion = switch (opcion) {
+                case 1 -> "A";
+                case 2 -> "W";
+                case 3 -> "S";
+                case 4 -> "D";
+                default -> "A";
+            };
+
+            switch (direccion) {
+                case "A":
+                    for (int pcolumna = ycolumna; pcolumna > 0; pcolumna--) {
+                        // Verificación de coordenada válida
+                        if (ataqueValido(tablero, xfila, pcolumna)) {
+                            // Entonces realiza el ataque
+                            int obj = 0;
+                            for (int i = 0; i < personajesJugar.length; i++) {
+                                if (personajesJugar[i].getXfila() == xfila && personajesJugar[i].getYcolumna() == pcolumna) {
+                                    obj = i;
+                                }
+                            }
+                            personajesJugar[obj].setVida(personajesJugar[obj].getVida() - daño);
+                            break;
+                        } else {
+                            // Coordenada incorrecta y continua
+                        }
+                    }
+                    break;
+                case "W":
+                    for (int pfila = xfila; pfila > 0; pfila--) {
+                        // Verificación de coordenada válida
+                        if (ataqueValido(tablero, pfila, ycolumna)) {
+                            // Entonces realiza el ataque
+                            int obj = 0;
+                            for (int i = 0; i < personajesJugar.length; i++) {
+                                if (personajesJugar[i].getXfila() == pfila && personajesJugar[i].getYcolumna() == ycolumna) {
+                                    obj = i;
+                                }
+                            }
+                            personajesJugar[obj].setVida(personajesJugar[obj].getVida() - daño);
+                            break;
+                        } else {
+                            // Coordenada incorrecta y continua
+                        }
+                    }
+                    break;
+                case "S":
+                    for (int pfila = xfila; pfila < tablero.length; pfila++) {
+                        // Verificación de coordenada válida
+                        if (ataqueValido(tablero, pfila, ycolumna)) {
+                            // Entonces realiza el ataque
+                            int obj = 0;
+                            for (int i = 0; i < personajesJugar.length; i++) {
+                                if (personajesJugar[i].getXfila() == pfila && personajesJugar[i].getYcolumna() == ycolumna) {
+                                    obj = i;
+                                }
+                            }
+                            personajesJugar[obj].setVida(personajesJugar[obj].getVida() - daño);
+                            break;
+                        } else {
+                            // Coordenada incorrecta y continua
+                        }
+                    }
+                    break;
+                case "D":
+                    for (int pcolumna = ycolumna; pcolumna < tablero.length; pcolumna++) {
+                        // Verificación de coordenada válida
+                        if (ataqueValido(tablero, xfila, pcolumna)) {
+                            // Entonces realiza el ataque
+                            int obj = 0;
+                            for (int i = 0; i < personajesJugar.length; i++) {
+                                if (personajesJugar[i].getXfila() == xfila && personajesJugar[i].getYcolumna() == pcolumna) {
+                                    obj = i;
+                                }
+                            }
+                            personajesJugar[obj].setVida(personajesJugar[obj].getVida() - daño);
+                            break;
+                        } else {
+                            // Coordenada incorrecta y continua
+                        }
+                    }
+                    break;
+                default:
+                    
+                    break;
+            }
+        return personajesJugar;
+    }
+
 }

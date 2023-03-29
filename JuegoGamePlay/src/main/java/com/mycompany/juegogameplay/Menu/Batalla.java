@@ -92,6 +92,28 @@ public class Batalla {
             System.out.println("2| " + personajesJugar[1].getPersonaje());
             int opcion = Consola.readInt("Personaje número:");
             do {
+                //Uso de la semilla de la vida
+                if (objetos[0].getCantidadDisponible() > 0) {
+                    if (personajesJugar[0].getVida() <= 0) {
+                        System.out.println("¿Deseas usar una Semillas de la vida para revivir a " + personajesJugar[0].getPersonaje());
+                        int opcionSV = Consola.readInt("1| Sí   2| No");
+                        if (opcionSV == 1) {
+                            System.out.println("Reviviendo a " + personajesJugar[0].getPersonaje());
+                            personajesJugar[0].setVida(vidaInicial[0]);
+                        }
+                    }
+                }
+                if (objetos[1].getCantidadDisponible() > 0) {
+                    if (personajesJugar[1].getVida() <= 0) {
+                        System.out.println("¿Deseas usar una Semillas de la vida para revivir a " + personajesJugar[1].getPersonaje());
+                        int opcionSV = Consola.readInt("1| Sí   2| No");
+                        if (opcionSV == 1) {
+                            System.out.println("Reviviendo a " + personajesJugar[1].getPersonaje());
+                            personajesJugar[1].setVida(vidaInicial[1]);
+                        }
+                    }
+                }
+
                 if (opcion == 1) {
                     personajeOn = 0;
                 } else if(opcion == 2){
@@ -104,7 +126,8 @@ public class Batalla {
             System.out.println("Seleccione la acción a realizar");
             System.out.println("1| Mover");
             System.out.println("2| Atacar");
-            int opcion2 = Consola.readInt("Personaje número:");
+            System.out.println("3| Objetos");
+            int opcion2 = Consola.readInt("Acción número:");
             do {
                 if (opcion2 == 1) {
                     //Jugables | Movimiento
@@ -112,6 +135,38 @@ public class Batalla {
                 } else if(opcion2 == 2){
                     //Jugables | Ataque
                     enemigosPartida = personajesJugar[personajeOn].ataquePersonaje(tablero.getTableroBatalla(), enemigosPartida);
+                } else if(opcion2 == 3){
+                    System.out.println("Selecciona un objeto");
+                    System.out.println("1| Elixir verde");
+                    System.out.println("2| Capa de movilidad");
+                    int opcion3 = Consola.readInt("Objeto a usar:");
+                    switch (opcion3) {
+                        case 1:
+                            if (objetos[1].getCantidadDisponible() > 0) {
+                                objetos[1].setCantidadDisponible(objetos[1].getCantidadDisponible() - 1);
+                                personajesJugar[personajeOn].setVida(personajesJugar[personajeOn].getVida() + 50);
+                                System.out.println(
+                                        personajesJugar[personajeOn].getPersonaje() + " ha recuperado 50 de vida");
+                            } else {
+                                System.out.println("No tienes elíxir verde");
+                            }
+                            break;
+                        case 2:
+                            if (objetos[2].getCantidadDisponible() > 0) {
+                                objetos[2].setCantidadDisponible(objetos[2].getCantidadDisponible() - 1);
+                                //Guardamos el movimiento máximo del personaje
+                                int movMax = personajesJugar[personajeOn].getMovimientoMax();
+                                //Setteamos el movimiento máximo como 1, para que el objeto realice cumpla su función
+                                personajesJugar[personajeOn].movimientoPersonajes(tablero.getTableroBatalla());
+                                //Una vez realizado el movimiento, regresamos el valor de movimiento máximo del personaje
+                                personajesJugar[personajeOn].setMovimientoMax(movMax);
+                            } else {
+                                System.out.println("No tienes capa de movilidad");
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 } else{
                     Consola.Invalido();
                 }
@@ -119,29 +174,53 @@ public class Batalla {
 
             // Mostramos el estado de cada personaje
             estadoPersonajes();
+            Consola.EnterContinuar();
 
-            //Enemigos | Movimiento
-            boolean enemigoVivo = false;
-            do {
-                int enemigoOn = Consola.numeroAleatorio(cantidadEnemigos-1, 0);
-                if (enemigosPartida[enemigoOn].getVida() > 0) {
-                    tablero.setTableroBatalla(enemigosPartida[enemigoOn].movimientoPersonajes(tablero.getTableroBatalla()));
-                    enemigoVivo = true;
-                }
-                contEnemigosEliminados = 0;
-                for (int i = 0; i < cantidadEnemigos; i++) {
-                    if (enemigosPartida[i].getVida()<=0) {
-                        contEnemigosEliminados = contEnemigosEliminados + 1;
+            if (Consola.numeroAleatorio(2, 1) == 1) {
+                // Enemigos | Movimiento
+                boolean enemigoVivo = false;
+                do {
+                    int enemigoOn = Consola.numeroAleatorio(cantidadEnemigos - 1, 0);
+                    if (enemigosPartida[enemigoOn].getVida() > 0) {
+                        tablero.setTableroBatalla(
+                                enemigosPartida[enemigoOn].movimientoPersonajes(tablero.getTableroBatalla()));
+                        enemigoVivo = true;
                     }
-                }
-                if (contEnemigosEliminados == cantidadEnemigos) {
-                    enemigosEliminados = true;
-                }
-            } while (!enemigoVivo && !enemigosEliminados);
+                    contEnemigosEliminados = 0;
+                    for (int i = 0; i < cantidadEnemigos; i++) {
+                        if (enemigosPartida[i].getVida() <= 0) {
+                            contEnemigosEliminados = contEnemigosEliminados + 1;
+                        }
+                    }
+                    if (contEnemigosEliminados == cantidadEnemigos) {
+                        enemigosEliminados = true;
+                    }
+                } while (!enemigoVivo && !enemigosEliminados);
+            } else {
+                // Enemigos | Ataque
+                boolean enemigoVivo = false;
+                do {
+                    int enemigoOn = Consola.numeroAleatorio(cantidadEnemigos - 1, 0);
+                    if (enemigosPartida[enemigoOn].getVida() > 0) {
+                        personajesJugar = enemigosPartida[enemigoOn].ataquePersonaje(tablero.getTableroBatalla(), personajesJugar);
+                        enemigoVivo = true;
+                    }
+                    contEnemigosEliminados = 0;
+                    for (int i = 0; i < cantidadEnemigos; i++) {
+                        if (enemigosPartida[i].getVida() <= 0) {
+                            contEnemigosEliminados = contEnemigosEliminados + 1;
+                        }
+                    }
+                    if (contEnemigosEliminados == cantidadEnemigos) {
+                        enemigosEliminados = true;
+                    }
+                } while (!enemigoVivo && !enemigosEliminados);
+            }
             
             // Mostramos el estado de cada personaje
             estadoPersonajes();
-            
+            Consola.EnterContinuar();
+
             //Se muestra el tablero
             tablero.imprimirTablero();
 

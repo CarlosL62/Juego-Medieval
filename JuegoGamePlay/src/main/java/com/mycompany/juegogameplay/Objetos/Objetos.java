@@ -7,6 +7,15 @@ public class Objetos {
     protected String nombreObjeto;
     protected String descripcion;
     protected int cantidadDisponible;
+    public int getCantidadDisponible() {
+        return cantidadDisponible;
+    }
+
+
+    public void setCantidadDisponible(int cantidadDisponible) {
+        this.cantidadDisponible = cantidadDisponible;
+    }
+
     protected int precio;
 
     // Características de cada objeto

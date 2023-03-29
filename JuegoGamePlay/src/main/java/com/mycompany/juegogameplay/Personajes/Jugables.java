@@ -82,15 +82,19 @@ public class Jugables extends Personajes{
             int yAtaque = Consola.readInt("Ingrese la columna");
 
             // Verificación de coordenada válida
-            if ((xAtaque > 0 && yAtaque > 0 && xAtaque < tablero.length && yAtaque < tablero.length) && (tablero[xAtaque][yAtaque].equals("| "+red+"O"+reset+" |") || tablero[xAtaque][yAtaque].equals("| "+red+"K"+reset+" |") || tablero[xAtaque][yAtaque].equals("| "+red+"B"+reset+" |") || tablero[xAtaque][yAtaque].equals("| "+red+"E"+reset+" |") || tablero[xAtaque][yAtaque].equals("| "+red+"F"+reset+" |"))) {
+            if (ataqueValido(tablero, xAtaque, yAtaque)) {
                 // Entonces realiza el ataque
-                int obj = 0;
-                for (int i = 0; i < enemigos.length; i++) {
-                    if (enemigos[i].getXfila() == xAtaque && enemigos[i].getYcolumna() == yAtaque) {
-                        obj = i;
+                if (tablero[xAtaque][yAtaque].equals("| " + green + "T" + reset + " |")) {
+                    tablero[xAtaque][yAtaque] = ("| " + reset + "_" + reset + " |");
+                } else{
+                    int obj = 0;
+                    for (int i = 0; i < enemigos.length; i++) {
+                        if (enemigos[i].getXfila() == xAtaque && enemigos[i].getYcolumna() == yAtaque) {
+                            obj = i;
+                        }
                     }
+                    enemigos[obj].setVida(enemigos[obj].getVida() - daño);
                 }
-                enemigos[obj].setVida(enemigos[obj].getVida()-daño);
             } else {
                 // Coordenada incorrecta
                 System.out.println("Coordenada inválida");
@@ -98,5 +102,25 @@ public class Jugables extends Personajes{
             } 
         } while (!coordenadaCorrecta);
         return enemigos;
+    }
+
+    public boolean ataqueValido(String[][] tablero, int xAtaque, int yAtaque){
+        boolean ataqueValido = false;
+        if ((xAtaque > 0 && yAtaque > 0 && xAtaque < tablero.length && yAtaque < tablero.length)
+                && (tablero[xAtaque][yAtaque].equals("| " + red + "O" + reset + " |")
+                        || tablero[xAtaque][yAtaque].equals("| " + red + "K" + reset + " |")
+                        || tablero[xAtaque][yAtaque].equals("| " + red + "B" + reset + " |")
+                        || tablero[xAtaque][yAtaque].equals("| " + red + "E" + reset + " |")
+                        || tablero[xAtaque][yAtaque].equals("| " + red + "F" + reset + " |")
+                        || tablero[xAtaque][yAtaque].equals("| " + green + "T" + reset + " |"))) {
+                            //Probabilidad de 70 % de acertar un golpe
+                            if (Consola.numeroAleatorio(100, 1) <= 70) {
+                                ataqueValido = true;
+                                System.out.println(personaje + " atacando");
+                            } else {
+                                System.out.println(personaje + " falló el golpe");
+                            }
+        }
+        return ataqueValido;
     }
 }
