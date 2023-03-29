@@ -70,4 +70,33 @@ public class Jugables extends Personajes{
         return texto;
     }
 
+    public Enemigos[] ataquePersonaje(String[][] tablero, Enemigos[] enemigos){
+        boolean coordenadaCorrecta = true;
+
+        do {
+            coordenadaCorrecta = true;
+
+            //Solicitud de coordenadas de ataque
+            System.out.println("Ingrese la coordenada que desea atacar");
+            int xAtaque = Consola.readInt("Ingrese la fila");
+            int yAtaque = Consola.readInt("Ingrese la columna");
+
+            // Verificación de coordenada válida
+            if ((xAtaque > 0 && yAtaque > 0 && xAtaque < tablero.length && yAtaque < tablero.length) && (tablero[xAtaque][yAtaque].equals("| "+red+"O"+reset+" |") || tablero[xAtaque][yAtaque].equals("| "+red+"K"+reset+" |") || tablero[xAtaque][yAtaque].equals("| "+red+"B"+reset+" |") || tablero[xAtaque][yAtaque].equals("| "+red+"E"+reset+" |") || tablero[xAtaque][yAtaque].equals("| "+red+"F"+reset+" |"))) {
+                // Entonces realiza el ataque
+                int obj = 0;
+                for (int i = 0; i < enemigos.length; i++) {
+                    if (enemigos[i].getXfila() == xAtaque && enemigos[i].getYcolumna() == yAtaque) {
+                        obj = i;
+                    }
+                }
+                enemigos[obj].setVida(enemigos[obj].getVida()-daño);
+            } else {
+                // Coordenada incorrecta
+                System.out.println("Coordenada inválida");
+                coordenadaCorrecta = false;
+            } 
+        } while (!coordenadaCorrecta);
+        return enemigos;
+    }
 }

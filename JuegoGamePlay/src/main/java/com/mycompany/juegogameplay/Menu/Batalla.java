@@ -50,8 +50,23 @@ public class Batalla {
                 System.out.println("Casilla fuera del campo, intenta de nuevo");
             }
         } while (!movimientoCorrecto);
-        
+
+        //Se solicita al usuario colocar al segundo combatiente en el campo
+        System.out.println("Ingrese la posición para enviar a su combatiente secundario");
+        movimientoCorrecto = false;
+        do {
+            personajesJugar[1].setXfila(Consola.readInt("Ingrese el número de fila"));
+            personajesJugar[1].setYcolumna(Consola.readInt("Ingrese el número de columna"));
+            if (personajesJugar[1].getXfila() > 0 && personajesJugar[1].getYcolumna() > 0 && personajesJugar[1].getXfila() < tablero.getTableroBatalla().length && personajesJugar[1].getYcolumna() < tablero.getTableroBatalla().length) {
+                movimientoCorrecto = true;
+            } else{
+                System.out.println("Casilla fuera del campo, intenta de nuevo");
+            }
+        } while (!movimientoCorrecto);
+
+        //Añadimos los combatientes al campo de batalla
         tablero.edicionTablero(personajesJugar[0].getXfila(), personajesJugar[0].getYcolumna(), personajesJugar[0].getCaracterImpreso());
+        tablero.edicionTablero(personajesJugar[1].getXfila(), personajesJugar[1].getYcolumna(), personajesJugar[1].getCaracterImpreso());
 
         //Generación de enemigos aleatorios
         enemigosAleatorios();
@@ -68,25 +83,98 @@ public class Batalla {
         
 
         int terminar = 0;
+        int contEnemigosEliminados = 0;
+        boolean enemigosEliminados = false;
         do {
-            //Jugables
-            tablero.setTableroBatalla(personajesJugar[0].movimientoPersonajes(tablero.getTableroBatalla()));
-            personajesJugar[0].estado();
+            int personajeOn = 0;
+            System.out.println("Seleccione el jugador a utilizar");
+            System.out.println("1| " + personajesJugar[0].getPersonaje());
+            System.out.println("2| " + personajesJugar[1].getPersonaje());
+            int opcion = Consola.readInt("Personaje número:");
+            do {
+                if (opcion == 1) {
+                    personajeOn = 0;
+                } else if(opcion == 2){
+                    personajeOn = 1;
+                } else{
+                    Consola.Invalido();
+                }
+            } while (opcion != 1 && opcion != 2);
+
+            System.out.println("Seleccione la acción a realizar");
+            System.out.println("1| Mover");
+            System.out.println("2| Atacar");
+            int opcion2 = Consola.readInt("Personaje número:");
+            do {
+                if (opcion2 == 1) {
+                    //Jugables | Movimiento
+                    tablero.setTableroBatalla(personajesJugar[personajeOn].movimientoPersonajes(tablero.getTableroBatalla()));
+                } else if(opcion2 == 2){
+                    //Jugables | Ataque
+                    enemigosPartida = personajesJugar[personajeOn].ataquePersonaje(tablero.getTableroBatalla(), enemigosPartida);
+                } else{
+                    Consola.Invalido();
+                }
+            } while (opcion2 != 1 && opcion2 != 2);
+
+            // Mostramos el estado de cada personaje
+            estadoPersonajes();
+
+            //Enemigos | Movimiento
+            boolean enemigoVivo = false;
+            do {
+                int enemigoOn = Consola.numeroAleatorio(cantidadEnemigos-1, 0);
+                if (enemigosPartida[enemigoOn].getVida() > 0) {
+                    tablero.setTableroBatalla(enemigosPartida[enemigoOn].movimientoPersonajes(tablero.getTableroBatalla()));
+                    enemigoVivo = true;
+                }
+                contEnemigosEliminados = 0;
+                for (int i = 0; i < cantidadEnemigos; i++) {
+                    if (enemigosPartida[i].getVida()<=0) {
+                        contEnemigosEliminados = contEnemigosEliminados + 1;
+                    }
+                }
+                if (contEnemigosEliminados == cantidadEnemigos) {
+                    enemigosEliminados = true;
+                }
+            } while (!enemigoVivo && !enemigosEliminados);
+            
+            // Mostramos el estado de cada personaje
+            estadoPersonajes();
+            
+            //Se muestra el tablero
             tablero.imprimirTablero();
 
-            //Enemigos
-            int enemigoOn = Consola.numeroAleatorio(cantidadEnemigos-1, 0);
-            tablero.setTableroBatalla(enemigosPartida[enemigoOn].movimientoPersonajes(tablero.getTableroBatalla()));
-            enemigosPartida[enemigoOn].estado();
-            tablero.imprimirTablero();
+            if (enemigosEliminados) {
+                Consola.Titulo("¡¡¡Felicidades " + jugador.getUser() + ", has ganado!!!");
+                System.out.println("Tu recompensa son 200 de oro");
+                jugador.setOro(jugador.getOro()+200);
+                System.out.println("Oro disponible: " + jugador.getOro());
+                Consola.EnterContinuar();
+            }
 
-            terminar = Consola.readInt("Terminar -1");
-        } while (terminar != 1);
+            if (!enemigosEliminados) {
+                terminar = Consola.readInt("¿Continuar?    1| Sí   2| No");
+            }
+            
+        } while (terminar == 1 && !enemigosEliminados);
         
         //Luego de terminar la batalla, renovamos la vida de cada personaje jugable
         personajesJugar[0].setVida(vidaInicial[0]);
         personajesJugar[1].setVida(vidaInicial[1]);
         
+    }
+
+    public void estadoPersonajes(){
+        Consola.Titulo("Estado de los personajes");
+        //Estado de cada combatiente
+        tablero.setTableroBatalla(personajesJugar[0].estado(tablero.getTableroBatalla()));
+        tablero.setTableroBatalla(personajesJugar[1].estado(tablero.getTableroBatalla()));
+
+        //Estado de cada enemigo
+        for (int i = 0; i < cantidadEnemigos; i++) {
+            tablero.setTableroBatalla(enemigosPartida[i].estado(tablero.getTableroBatalla()));
+        }
     }
 
     public void seleccionDePersonajes() {

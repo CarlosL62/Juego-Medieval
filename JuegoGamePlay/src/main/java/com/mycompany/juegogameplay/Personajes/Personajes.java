@@ -1,6 +1,7 @@
 package com.mycompany.juegogameplay.Personajes;
 
 import com.mycompany.juegogameplay.Menu.Consola;
+import com.mycompany.juegogameplay.Menu.Tablero;
 
 public class Personajes{
 
@@ -83,46 +84,51 @@ public class Personajes{
     protected int moverContador = 1;
     protected boolean movimientoTerminado = false;
 
-    //Movimiento de los personajes
+    // Movimiento de los personajes
     public String[][] movimientoPersonajes(String[][] tablero) {
-        String movimientoTeclado = "";
-        boolean caracterValido = true;
-        do {
-            movimientoTeclado = Consola.readString("Mueva al " + personaje + " usando AWSD");
-            movimientoTeclado = movimientoTeclado.toUpperCase();
-            caracterValido = true;
-            movimientoValido = true;
-            movimientoTerminado = false;
-            moverContador = 1;
-            switch (movimientoTeclado) {
-                case "A":
-                    do {
-                        movimientoPersonajeValido(tablero, xfila, ycolumna - 1);
-                    } while (!movimientoTerminado && movimientoValido);
-                    break;
-                case "W":
-                    do {
-                        movimientoPersonajeValido(tablero, xfila - 1, ycolumna);
-                    } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
-                    break;
-                case "S":
-                    do {
-                        movimientoPersonajeValido(tablero, xfila + 1, ycolumna);
-                    } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
-                    break;
-                case "D":
-                    do {
-                        movimientoPersonajeValido(tablero, xfila, ycolumna + 1);
-                    } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
-                    break;
-                default:
-                    movimientoValido = false;
-                    break;
-            }
-            if (!movimientoValido) {
-                System.out.println("Movimiento inválido");
-            }
-        } while (!caracterValido || !movimientoTerminado);
+        if (vivo()) {
+            String movimientoTeclado = "";
+            boolean caracterValido = true;
+            do {
+                movimientoTeclado = Consola.readString("Mueva al " + personaje + " usando AWSD");
+                movimientoTeclado = movimientoTeclado.toUpperCase();
+                caracterValido = true;
+                movimientoValido = true;
+                movimientoTerminado = false;
+                moverContador = 1;
+                switch (movimientoTeclado) {
+                    case "A":
+                        do {
+                            movimientoPersonajeValido(tablero, xfila, ycolumna - 1);
+                        } while (!movimientoTerminado && movimientoValido);
+                        break;
+                    case "W":
+                        do {
+                            movimientoPersonajeValido(tablero, xfila - 1, ycolumna);
+                        } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
+                        break;
+                    case "S":
+                        do {
+                            movimientoPersonajeValido(tablero, xfila + 1, ycolumna);
+                        } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
+                        break;
+                    case "D":
+                        do {
+                            movimientoPersonajeValido(tablero, xfila, ycolumna + 1);
+                        } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
+                        break;
+                    default:
+                        movimientoValido = false;
+                        break;
+                }
+                if (!movimientoValido) {
+                    System.out.println("Movimiento inválido");
+                }
+            } while (!caracterValido || !movimientoTerminado);
+            
+        } else {
+            // No realiza la acción porque está muerto
+        }
         return tablero;
     }
 
@@ -161,16 +167,29 @@ public class Personajes{
         }
     }
 
-    public void estado(){
-        //Verificación si se encuentra sobre lava
-        if (casillaOriginal.equals("| "+yellow+"$"+reset+" |")) {
-            System.out.println("¡¡¡ " + personaje + " está sobre lava, está que arde!!!");
-            if (vida > 5) {
-                vida = (int) Math.floor(vida - vida*0.05);
-            } else {
-                vida = vida - 1;
+    public String[][] estado(String[][] tablero){
+        if (vida > 0) {
+            // Verificación si se encuentra sobre lava
+            if (casillaOriginal.equals("| " + yellow + "$" + reset + " |")) {
+                System.out.println("¡¡¡ " + personaje + " está sobre lava, está que arde!!!");
+                if (vida > 5) {
+                    vida = (int) Math.floor(vida - vida * 0.05);
+                } else {
+                    vida = vida - 1;
+                }
             }
+            System.out.println("Vida de " + personaje + ": " + vida);
+        } else {
+            tablero[xfila][ycolumna] = "| "+"X"+" |";
         }
-        System.out.println("Vida de " + personaje + ": "+ vida);
+        return tablero;
+    }
+
+    public boolean vivo(){
+        boolean vivo = true;
+        if (vida <= 0) {
+            vivo = false;
+        }
+        return vivo;
     }
 }

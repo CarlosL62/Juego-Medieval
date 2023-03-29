@@ -7,50 +7,55 @@ public class Enemigos extends Personajes{
     @Override
     //Movimiento de los enemigos
     public String[][] movimientoPersonajes(String[][] tablero) {
-        String movimientoTeclado = "";
-        System.out.println(personaje + " en fila: " + xfila + " columna: " + ycolumna + " se está moviendo...");
-        do {
-            //Los movimientos serán aleatorios
-            movimientoTeclado = switch (Consola.numeroAleatorio(4, 1)) {
-                case 1 -> "A";
-                case 2 -> "W";
-                case 3 -> "S";
-                case 4 -> "D";
-                default -> "A";
-            };
-            movimientoValido = true;
-            movimientoTerminado = false;
-            moverContador = 1;
-            switch (movimientoTeclado) {
-                case "A":
-                    do {
-                        movimientoPersonajeValido(tablero, xfila, ycolumna - 1);
-                    } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
-                    break;
-                case "W":
-                    do {
-                        movimientoPersonajeValido(tablero, xfila - 1, ycolumna);
-                    } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
-                    break;
-                case "S":
-                    do {
-                        movimientoPersonajeValido(tablero, xfila + 1, ycolumna);
-                    } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
-                    break;
-                case "D":
-                    do {
-                        movimientoPersonajeValido(tablero, xfila, ycolumna + 1);
-                    } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
-                    break;
-                default:
-                    movimientoValido = false;
-                    break;
-            }
-            if (!movimientoValido) {
-                //Movimiento inváldio
-            }
-        } while (!movimientoTerminado);
-        System.out.println(personaje + " se movilizó a fila: " + xfila + " columna: " + ycolumna);
+        if (vivo()) {
+            String movimientoTeclado = "";
+            System.out.println(personaje + " en fila: " + xfila + " columna: " + ycolumna + " se está moviendo...");
+            do {
+                // Los movimientos serán aleatorios
+                movimientoTeclado = switch (Consola.numeroAleatorio(4, 1)) {
+                    case 1 -> "A";
+                    case 2 -> "W";
+                    case 3 -> "S";
+                    case 4 -> "D";
+                    default -> "A";
+                };
+                movimientoValido = true;
+                movimientoTerminado = false;
+                moverContador = 1;
+                switch (movimientoTeclado) {
+                    case "A":
+                        do {
+                            movimientoPersonajeValido(tablero, xfila, ycolumna - 1);
+                        } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
+                        break;
+                    case "W":
+                        do {
+                            movimientoPersonajeValido(tablero, xfila - 1, ycolumna);
+                        } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
+                        break;
+                    case "S":
+                        do {
+                            movimientoPersonajeValido(tablero, xfila + 1, ycolumna);
+                        } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
+                        break;
+                    case "D":
+                        do {
+                            movimientoPersonajeValido(tablero, xfila, ycolumna + 1);
+                        } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
+                        break;
+                    default:
+                        movimientoValido = false;
+                        break;
+                }
+                if (!movimientoValido) {
+                    // Movimiento inváldio
+                }
+            } while (!movimientoTerminado);
+            System.out.println(personaje + " se movilizó a fila: " + xfila + " columna: " + ycolumna);
+        } else{
+            //No hace nada porque ya está muerto
+        }
+        
         return tablero;
     }
 

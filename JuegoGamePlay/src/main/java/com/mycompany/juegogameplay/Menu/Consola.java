@@ -23,12 +23,17 @@ public class Consola {
             error = false;
 
             String texto = readString(message);
-            for (int i = 0; i < texto.length(); i++) {
-                char caracter = texto.charAt(i);
-                if (!Character.isDigit(caracter)) {
-                    error = true;
+            if (texto.equals("")) {
+                error = true;
+            } else{
+                for (int i = 0; i < texto.length(); i++) {
+                    char caracter = texto.charAt(i);
+                    if (!Character.isDigit(caracter)) {
+                        error = true;
+                    }
                 }
             }
+            
             if(error){
                 Consola.Invalido();
             } else{
