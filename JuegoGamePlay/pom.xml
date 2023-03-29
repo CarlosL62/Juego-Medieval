@@ -12,11 +12,11 @@
         <exec.mainClass>com.mycompany.juegogameplay.JuegoGamePlay</exec.mainClass>
     </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.jline/jline-terminal-jansi -->
+        <!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
 <dependency>
-    <groupId>org.jline</groupId>
-    <artifactId>jline-terminal-jansi</artifactId>
-    <version>3.23.0</version>
+    <groupId>org.fusesource.jansi</groupId>
+    <artifactId>jansi</artifactId>
+    <version>2.4.0</version>
 </dependency>
     </dependencies>
 </project>

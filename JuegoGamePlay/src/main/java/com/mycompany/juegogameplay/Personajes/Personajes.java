@@ -2,6 +2,10 @@ package com.mycompany.juegogameplay.Personajes;
 
 import com.mycompany.juegogameplay.Menu.Consola;
 
+import org.fusesource.jansi.AnsiColors;
+
+import com.mycompany.juegogameplay.*;;
+
 public class Personajes{
 
     protected String caracter;
@@ -32,17 +36,6 @@ public class Personajes{
     protected String tipoMovimiento;
     protected String tipoAtaque;
 
-    // Colores
-    String black = "\033[30m";
-    String red = "\033[31m";
-    String green = "\033[32m";
-    String yellow = "\033[33m";
-    String blue = "\033[34m";
-    String purple = "\033[35m";
-    String cyan = "\033[36m";
-    String white = "\033[37m";
-    String reset = "\u001B[0m";
-
     //Variables de coordenadas de posición
     protected int xfila;
     public int getXfila() {
@@ -62,6 +55,17 @@ public class Personajes{
     public void setYcolumna(int ycolumna) {
         this.ycolumna = ycolumna;
     }
+
+    // Colores
+    public static final String black = "\033[30m";
+    public static final String red = "\033[31m";
+    public static final String green = "\033[32m";
+    public static final String yellow = "\033[33m";
+    public static final String blue = "\033[34m";
+    public static final String purple = "\033[35m";
+    public static final String cyan = "\033[36m";
+    public static final String white = "\033[37m";
+    public static final String reset = "\u001B[0m";
 
     //Características
     protected int vida;
