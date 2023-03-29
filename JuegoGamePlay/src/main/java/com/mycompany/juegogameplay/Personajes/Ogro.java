@@ -1,7 +1,5 @@
 package com.mycompany.juegogameplay.Personajes;
 
-import com.mycompany.juegogameplay.Menu.Consola;
-
 public class Ogro extends Enemigos{
     
     private int vida = 300;

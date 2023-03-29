@@ -24,7 +24,7 @@ public class Partida{
         this.jugables = jugables;
     }
 
-    public void IniciarPartida() {
+    public void iniciarPartida() {
         Consola.LimpiarPantalla();
         //Si es la primera partida
         if (primerPartida) {
@@ -44,7 +44,7 @@ public class Partida{
             // primeraPartida = false;
             Consola.EnterContinuar();
             // Se abre la tienda, la selección de personajes y de mapa
-            tienda.IniciarTienda();
+            tienda.iniciarTienda();
 
             // Al finalizar su primera partida se marca como falso
             primerPartida = false;

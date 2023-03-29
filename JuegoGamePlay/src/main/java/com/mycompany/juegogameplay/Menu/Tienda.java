@@ -20,7 +20,7 @@ public class Tienda {
 
     private boolean primerPartida = true;
 
-    public void IniciarTienda() {
+    public void iniciarTienda() {
         int opcion = 0;
         do {
             Consola.LimpiarPantalla();

@@ -14,6 +14,6 @@ public class JuegoGamePlay {
         Consola.Titulo("La aventura del aventurero");
         Consola.EnterContinuar();
         Menu menu = new Menu();
-        menu.MostrarMenu();
+        menu.mostrarMenu();
     }
 }

@@ -1,7 +1,6 @@
 package com.mycompany.juegogameplay.Personajes;
 
 import com.mycompany.juegogameplay.Menu.Consola;
-import com.mycompany.juegogameplay.Menu.Jugador;
 
 public class Mago extends Jugables{
 

@@ -1,6 +1,5 @@
 package com.mycompany.juegogameplay.Personajes;
 
-import com.mycompany.juegogameplay.Casillas.Casillas;
 import com.mycompany.juegogameplay.Menu.Consola;
 
 public class Personajes{
@@ -90,119 +89,21 @@ public class Personajes{
             switch (movimientoTeclado) {
                 case "A":
                     do {
-                        /*if (movimientoPersonajeValido(tablero, xfila, ycolumna - 1)) {
-                            tablero[xfila][ycolumna] = casillaOriginal;
-                            ycolumna = ycolumna - 1;
-                            casillaOriginal = tablero[xfila][ycolumna];
-                            tablero[xfila][ycolumna] = "| " + caracterImpreso + " |";
-                            int opcion = 0;
-                            do {
-                                if (moverContador < movimientoMax) {
-                                    opcion = Consola.readInt(
-                                            "¿Desea mover +1 de " + moverContador + " movimiento/s?  1| Sí   2| No");
-                                    if (opcion == 1) {
-                                        moverContador = moverContador + 1;
-                                    } else if (opcion == 2) {
-                                        movimientoTerminado = true;
-                                    }
-                                } else {
-                                    movimientoTerminado = true;
-                                }
-                            } while (opcion != 1 && opcion != 2 && !movimientoTerminado);
-                        } else {
-                            movimientoValido = false;
-                            if (moverContador > 1) {
-                                movimientoTerminado = true;
-                            }
-                        }*/
-
                         movimientoPersonajeValido(tablero, xfila, ycolumna - 1);
                     } while (!movimientoTerminado && movimientoValido);
                     break;
                 case "W":
                     do {
-                        /*if (movimientoPersonajeValido(tablero, xfila - 1, ycolumna)) {
-                            tablero[xfila][ycolumna] = casillaOriginal;
-                            xfila = xfila - 1;
-                            casillaOriginal = tablero[xfila][ycolumna];
-                            tablero[xfila][ycolumna] = "| " + caracterImpreso + " |";
-                            int opcion = 0;
-                            do {
-                                if (moverContador < movimientoMax) {
-                                    opcion = Consola.readInt(
-                                            "¿Desea mover +1 de " + moverContador + " movimiento/s?  1| Sí   2| No");
-                                    if (opcion == 1) {
-                                        moverContador = moverContador + 1;
-                                    } else if (opcion == 2) {
-                                        movimientoTerminado = true;
-                                    }
-                                } else {
-                                    movimientoTerminado = true;
-                                }
-
-                            } while (opcion != 1 && opcion != 2 && !movimientoTerminado);
-                        } else {
-                            movimientoValido = false;
-                        }*/
-
                         movimientoPersonajeValido(tablero, xfila - 1, ycolumna);
                     } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
                     break;
                 case "S":
                     do {
-                        /*if (movimientoPersonajeValido(tablero, xfila + 1, ycolumna)) {
-                            tablero[xfila][ycolumna] = casillaOriginal;
-                            xfila = xfila + 1;
-                            casillaOriginal = tablero[xfila][ycolumna];
-                            tablero[xfila][ycolumna] = "| " + caracterImpreso + " |";
-                            int opcion = 0;
-                            do {
-                                if (moverContador < movimientoMax) {
-                                    opcion = Consola.readInt(
-                                            "¿Desea mover +1 de " + moverContador + " movimiento/s?  1| Sí   2| No");
-                                    if (opcion == 1) {
-                                        moverContador = moverContador + 1;
-                                    } else if (opcion == 2) {
-                                        movimientoTerminado = true;
-                                    }
-                                } else {
-                                    movimientoTerminado = true;
-                                }
-
-                            } while (opcion != 1 && opcion != 2 && !movimientoTerminado);
-                        } else {
-                            movimientoValido = false;
-                        }*/
-
                         movimientoPersonajeValido(tablero, xfila + 1, ycolumna);
                     } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
                     break;
                 case "D":
                     do {
-                        /*if (movimientoPersonajeValido(tablero, xfila, ycolumna + 1)) {
-                            tablero[xfila][ycolumna] = casillaOriginal;
-                            ycolumna = ycolumna + 1;
-                            casillaOriginal = tablero[xfila][ycolumna];
-                            tablero[xfila][ycolumna] = "| " + caracterImpreso + " |";
-                            int opcion = 0;
-                            do {
-                                if (moverContador < movimientoMax) {
-                                    opcion = Consola.readInt(
-                                            "¿Desea mover +1 de " + moverContador + " movimiento/s?  1| Sí   2| No");
-                                    if (opcion == 1) {
-                                        moverContador = moverContador + 1;
-                                    } else if (opcion == 2) {
-                                        movimientoTerminado = true;
-                                    }
-                                } else {
-                                    movimientoTerminado = true;
-                                }
-
-                            } while (opcion != 1 && opcion != 2 && !movimientoTerminado);
-                        } else {
-                            movimientoValido = false;
-                        }*/
-
                         movimientoPersonajeValido(tablero, xfila, ycolumna + 1);
                     } while (moverContador <= movimientoMax && !movimientoTerminado && movimientoValido);
                     break;

@@ -1,7 +1,5 @@
 package com.mycompany.juegogameplay.Menu;
 
-import java.util.logging.ConsoleHandler;
-
 import com.mycompany.juegogameplay.Objetos.Objetos;
 import com.mycompany.juegogameplay.Personajes.*;
 
@@ -33,7 +31,7 @@ public class Batalla {
         seleccionDePersonajes();
 
         //Se abre la selección de mapas
-        tablero.IniciarTablero();
+        tablero.iniciarTablero();
         
         //Se empieza la partida y la construcción del tablero
         //Se solicita al usuario colocar al combatiente en el campo
@@ -144,7 +142,7 @@ public class Batalla {
 
         if (!existenPersonajes) {
             Consola.EnterContinuar();
-            tienda.IniciarTienda();
+            tienda.iniciarTienda();
         } else{
             Consola.LimpiarPantalla();
             System.out.println("Personajes seleccionados");

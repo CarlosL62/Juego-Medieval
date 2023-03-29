@@ -45,7 +45,7 @@ public class Tablero {
         this.tableroBatalla = tableroBatalla;
     }
 
-    public void IniciarTablero (){
+    public void iniciarTablero (){
         // Seleccion del mapa
         int opcion = 0;
         porcentajes = new int[4];

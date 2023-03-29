@@ -46,7 +46,7 @@ public class Menu{
         System.out.println("Completado");
     }
 
-    public void MostrarMenu () {
+    public void mostrarMenu () {
         int opcion = 0;
         boolean primerPartida = true;
         do {
@@ -68,16 +68,16 @@ public class Menu{
             opcion = Consola.readInt("Opción número: ");
             switch (opcion) {
                 case 1:
-                    partida.IniciarPartida();
+                    partida.iniciarPartida();
                     break;
                 case 2:
-                    tienda.IniciarTienda();
+                    tienda.iniciarTienda();
                     break;
                 case 3:
-                    tablero.IniciarTablero();
+                    tablero.iniciarTablero();
                     break;
                 case 4:
-                    inventario.IniciarInventario();
+                    inventario.iniciarInventario();
                     break;
                 case 5:
                     System.out.println("Cerrando el juego...");

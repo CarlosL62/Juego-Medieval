@@ -1,7 +1,5 @@
 package com.mycompany.juegogameplay.Personajes;
 
-import com.mycompany.juegogameplay.Menu.Consola;
-
 public class Cancerbero extends Enemigos{
     
     private int vida = 400;

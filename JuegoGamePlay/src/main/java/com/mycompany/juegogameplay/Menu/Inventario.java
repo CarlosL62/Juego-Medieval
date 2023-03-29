@@ -16,7 +16,7 @@ public class Inventario {
         this.objetos = objetos;
     }
 
-    public void IniciarInventario(){
+    public void iniciarInventario(){
         int opcion = 0;
         do {
             Consola.LimpiarPantalla();
