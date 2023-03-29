@@ -96,7 +96,7 @@ public class Batalla {
                 if (objetos[0].getCantidadDisponible() > 0) {
                     if (personajesJugar[0].getVida() <= 0) {
                         System.out.println("¿Deseas usar una Semillas de la vida para revivir a " + personajesJugar[0].getPersonaje());
-                        int opcionSV = Consola.readInt("1| Sí   2| No");
+                        int opcionSV = Consola.readInt( "1| Sí   2| No");
                         if (opcionSV == 1) {
                             System.out.println("Reviviendo a " + personajesJugar[0].getPersonaje());
                             personajesJugar[0].setVida(vidaInicial[0]);

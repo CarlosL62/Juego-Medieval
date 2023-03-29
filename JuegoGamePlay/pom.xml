@@ -11,4 +11,12 @@
         <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>com.mycompany.juegogameplay.JuegoGamePlay</exec.mainClass>
     </properties>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.jline/jline-terminal-jansi -->
+<dependency>
+    <groupId>org.jline</groupId>
+    <artifactId>jline-terminal-jansi</artifactId>
+    <version>3.23.0</version>
+</dependency>
+    </dependencies>
 </project>

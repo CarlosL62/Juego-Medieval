@@ -71,6 +71,7 @@ public class Mago extends Jugables {
             // Solicitud de coordenadas de ataque
             System.out.println("Ingrese la dirección que desea atacar usando AWSD");
             String opcion = Consola.readString("Dirección para atacar");
+            opcion = opcion.toUpperCase();
             switch (opcion) {
                 case "A":
                     for (int pcolumna = ycolumna; pcolumna > 0; pcolumna--) {
