@@ -14,7 +14,6 @@ public class Batalla {
     private int dificultad;
 
     private Jugables personajesJugar[];
-    private int vidaInicial[];
     private Enemigos enemigosPartida[];
     private int cantidadEnemigos;
     
