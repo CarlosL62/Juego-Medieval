@@ -14,6 +14,7 @@ public class Batalla {
     private int dificultad;
 
     private Jugables personajesJugar[];
+    private int vidaInicial[];
     private Enemigos enemigosPartida[];
     private int cantidadEnemigos;
     
@@ -28,7 +29,11 @@ public class Batalla {
     public void iniciarBatalla() {
         //Se abre la selección de personajes
         this.personajesJugar = new Jugables [2];
+        int[] vidaInicial = new int[2];
         seleccionDePersonajes();
+        //Obtenemos los valores iniciales de vida
+        vidaInicial[0] = personajesJugar[0].getVida();
+        vidaInicial[1] = personajesJugar[1].getVida();
 
         //Se abre la selección de mapas
         tablero.iniciarTablero();
@@ -67,15 +72,21 @@ public class Batalla {
         do {
             //Jugables
             tablero.setTableroBatalla(personajesJugar[0].movimientoPersonajes(tablero.getTableroBatalla()));
+            personajesJugar[0].estado();
             tablero.imprimirTablero();
 
             //Enemigos
             int enemigoOn = Consola.numeroAleatorio(cantidadEnemigos-1, 0);
             tablero.setTableroBatalla(enemigosPartida[enemigoOn].movimientoPersonajes(tablero.getTableroBatalla()));
+            enemigosPartida[enemigoOn].estado();
             tablero.imprimirTablero();
 
             terminar = Consola.readInt("Terminar -1");
         } while (terminar != 1);
+        
+        //Luego de terminar la batalla, renovamos la vida de cada personaje jugable
+        personajesJugar[0].setVida(vidaInicial[0]);
+        personajesJugar[1].setVida(vidaInicial[1]);
         
     }
 

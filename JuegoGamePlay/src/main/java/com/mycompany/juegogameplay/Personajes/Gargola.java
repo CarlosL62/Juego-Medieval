@@ -19,23 +19,6 @@ public class Gargola extends Enemigos{
     }
 
     //Modificación para que tome en cuenta que vuela
-    /*@Override
-    public boolean movimientoPersonajeValido(String[][] tablero, int destinoX, int destinoY){
-        boolean dentroArea = false;
-        //Verificación que el movimiento sea válido, primero que este dentro del tablero y que sea a una casilla válida
-        if((destinoX > 0 && destinoY > 0 && destinoX < tablero.length && destinoY < tablero.length) && 
-        (tablero[destinoX][destinoY].equals("| "+reset+"_"+reset+" |") || 
-        tablero[destinoX][destinoY].equals("| "+yellow+"$"+reset+" |") ||
-        tablero[destinoX][destinoY].equals("| " + green + "T" + reset + " |") || 
-        tablero[destinoX][destinoY].equals("| " + blue + "~" + reset + " |"))){
-            
-            dentroArea = true;
-        }
-
-        return dentroArea;
-    }*/
-
-    //Modificación para que tome en cuenta que vuela
     @Override
     public void movimientoPersonajeValido(String[][] tablero, int destinoX, int destinoY) {
         // Verificación que el movimiento sea válido, primero que este dentro del

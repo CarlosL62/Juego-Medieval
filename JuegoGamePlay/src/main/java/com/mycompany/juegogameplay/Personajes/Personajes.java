@@ -57,6 +57,14 @@ public class Personajes{
 
     //Características
     protected int vida;
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
+    }
+
     protected int daño;
 
     //Espacio sobre el que se situa
@@ -151,5 +159,18 @@ public class Personajes{
                 movimientoTerminado = true;
             }
         }
+    }
+
+    public void estado(){
+        //Verificación si se encuentra sobre lava
+        if (casillaOriginal.equals("| "+yellow+"$"+reset+" |")) {
+            System.out.println("¡¡¡ " + personaje + " está sobre lava, está que arde!!!");
+            if (vida > 5) {
+                vida = (int) Math.floor(vida - vida*0.05);
+            } else {
+                vida = vida - 1;
+            }
+        }
+        System.out.println("Vida de " + personaje + ": "+ vida);
     }
 }
