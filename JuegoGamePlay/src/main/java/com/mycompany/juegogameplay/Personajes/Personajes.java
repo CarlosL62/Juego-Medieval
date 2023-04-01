@@ -2,10 +2,6 @@ package com.mycompany.juegogameplay.Personajes;
 
 import com.mycompany.juegogameplay.Menu.Consola;
 
-import org.fusesource.jansi.AnsiColors;
-
-import com.mycompany.juegogameplay.*;;
-
 public class Personajes{
 
     protected String caracter;
